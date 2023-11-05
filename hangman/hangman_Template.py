@@ -50,7 +50,19 @@ class Hangman:
         self.ask_for_input()
         
 
-    def check_letter(self, letter) -> None:
+    def check_guess(self, guess):
+        letter = guess.lower()
+        if (letter in self.word):
+            print(f"Good guess! {guess} is in the word.")
+            for index in range(len(self.word)):
+                if (letter == self.word[index]):
+                    self.word_guessed[index] = letter
+                    self.list_of_guesses.add(letter)
+            self.num_letters -= 1
+        else:
+            self.num_lives -= 1
+            print(f"Sorry, {letter} is not in the word.")
+            print(f"You have {self.num_lives} lives left.")
         '''
         Checks if the letter is in the word.
         If it is, it replaces the '_' in the word_guessed list with the letter.
