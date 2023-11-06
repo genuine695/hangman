@@ -1,8 +1,31 @@
 class HangmanView:
-    def __init__(self):
-        self.introduction()
+    '''
+    View class of the MVC architecture.
 
+    The objective of the view is to display 
+    the user interface of the hangman game.
+
+    Methods:
+    -------
+    display(model)
+        Returns the current state of the game in terms of the lives left, letters attempted
+        and hangman status.
+   
+    display_win(model)
+         Returns CLI art when the player wins
+
+    display_loss(model)
+         Return CLI art when the player loses and reveals the word they were trying to guess
+   
+    introduction()
+         Displays instructions in terms of the game logic, state and mechanics
+    '''
+    def __init__(self):
+        # Displays the rules and mechanics of the game
+        self.introduction()
+   
     def display(self, model):
+        # Each 'hangman picture' in the list corresponds to the number of lives.
         stages = ["""
                --------
                |      |
@@ -68,6 +91,7 @@ class HangmanView:
         print("\t\t\tLetters you have tried: " + ", ".join(model.get_list_of_guesses()) + "\n")
 
     def display_win(self, model):
+        # Prints out the state
         print(r"""
         __   __            _    _ _       _ 
         \ \ / /           | |  | (_)     | |
@@ -81,6 +105,7 @@ class HangmanView:
         print("\n\t\t\tCongratulations! You've won!")
 
     def display_loss(self, model):
+        # Prints out the state and the secret word
         print(r"""
            _____                         ____                 
           / ____|                       / __ \                
